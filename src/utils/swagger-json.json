@@ -1,0 +1,423 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Whatsapp-Clone - 2022",
+    "description": "This is a Professional whatsapp Documentation which is designed in node js using sockets",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "kumar.divyansh312@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "Everything about users"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get All Users",
+        "description": "Getting All Users",
+        "operationId": "findAllUser",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/userFetch"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Post User Information",
+        "description": "Register User",
+        "operationId": "registerUser",
+        "requestBody": {
+          "description": "Create a new user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userRegister"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/userRegister"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Login user with username and password",
+        "description": "Login Here",
+        "operationId": "login",
+        "requestBody": {
+          "description": "Login with username and password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/userRegister"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/users/changePassword": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "change user password",
+        "description": "Enter new password",
+        "operationId": "password change",
+        "requestBody": {
+          "description": "Change user Password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/changeUserPassword"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/changeUserPassword"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/users/loggedUser": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get logged in user information",
+        "description": "Logged in user from JWT Token",
+        "operationId": "Information of User",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/userFetch"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/users/sendUserPasswordResetEmail": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Forget password Reset",
+        "description": "Enter your Email to get a reset link",
+        "operationId": "email change",
+        "requestBody": {
+          "description": "Change user Password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/restEmailForUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/restEmailForUser"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/users/userPasswordResetWithEmail/{id}/{token}": {
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Reset Forget Password",
+        "description": "Reset Password Using Reset Link",
+        "operationId": "Reset Password",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "description": "token recieved from email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Reset user Password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/changeUserPassword"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/changeUserPassword"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "userRegister": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "password": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "name": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "phone": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "pic": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "email": {
+            "type": "string",
+            "example": "abcd"
+          }
+        },
+        "xml": {
+          "name": "order"
+        }
+      },
+      "userFetch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "email": {
+            "type": "string",
+            "example": "abcd"
+          }
+        },
+        "xml": {
+          "name": "order"
+        }
+      },
+      "loginUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "password": {
+            "type": "string",
+            "example": "abcd"
+          }
+        },
+        "xml": {
+          "name": "order"
+        }
+      },
+      "changeUserPassword": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "example": "abcd"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "example": "abcd"
+          }
+        },
+        "xml": {
+          "name": "order"
+        }
+      },
+      "restEmailForUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "abcd"
+          }
+        },
+        "xml": {
+          "name": "order"
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}
