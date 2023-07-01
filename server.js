@@ -38,16 +38,11 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.send("NOT FOUND")
 })
-const ip = '127.0.0.1'; // Replace with the desired IP address
 // Start server after connecting mongodb server
 connectDB().then((res => {
     console.log("Database connected successfully")
-    // app.listen(port, "192.168.1.9", (req, res) => {
-    //     console.log(`port listen at port = http://localhost:${port}/`)
-    // })
-
-    app.listen(port, ip, () => {
-        console.log(`Server is running on http://${ip}:3000`);
+    app.listen(port, () => {
+        console.log(`Server is running on http://localhost:3000`);
     });
 })).catch(err => console.log(err + 'error'))
 
