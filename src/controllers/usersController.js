@@ -12,7 +12,7 @@ const getAllUsers = (req, res) => {
 
     // pool.query(userQueries.getAllUsers, (err, result) => {
     //     if (err) throw err
-    res.json({ success: true, message: "All Users Fetched" })
+    res.status(200).json({ success: true, message: "All Users Fetched" })
     // })
 
 }
