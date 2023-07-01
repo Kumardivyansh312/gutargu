@@ -41,8 +41,8 @@ app.get('*', (req, res) => {
 // Start server after connecting mongodb server
 connectDB().then((res => {
     console.log("Database connected successfully")
-    app.listen(port, () => {
-        console.log(`Server is running on http://localhost:3000`);
+    app.listen("https://gutargu-3tib.onrender.com", () => {
+        console.log(`Server is running on https://gutargu-3tib.onrender.com`);
     });
 })).catch(err => console.log(err + 'error'))
 
