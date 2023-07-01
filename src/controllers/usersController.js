@@ -20,7 +20,7 @@ const getAllUsers = (req, res) => {
 //Get Register User In db
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, name, email, password, confirmPassword, phone, pic } = req.body;
+    const { username, name, email, password, confirmPassword, phone, pic = "" } = req.body;
     if (!name || !email || !password || !confirmPassword || !phone) {
         res.status(400).json({ success: false, message: "Please enter all mandatory feilds." });
     }
